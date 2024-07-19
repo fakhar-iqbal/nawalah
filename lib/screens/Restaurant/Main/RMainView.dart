@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:paraiso/screens/Restaurant/Main/RAnalysisView.dart';
-import 'package:paraiso/screens/Restaurant/Main/RHomeView.dart';
-import 'package:paraiso/screens/Restaurant/Main/RLiveView.dart';
-import 'package:paraiso/screens/Restaurant/Main/ROrderView.dart';
+import 'package:nawalah/screens/Restaurant/Main/RAnalysisView.dart';
+import 'package:nawalah/screens/Restaurant/Main/RHomeView.dart';
+import 'package:nawalah/screens/Restaurant/Main/RLiveView.dart';
+import 'package:nawalah/screens/Restaurant/Main/ROrderView.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/Restaurants/nearby_restaurants_controller.dart';

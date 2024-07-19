@@ -8,9 +8,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:paraiso/controllers/customer_controller.dart';
-import 'package:paraiso/util/theme/theme.dart';
-import 'package:paraiso/widgets/primary_button.dart';
+import 'package:nawalah/controllers/customer_controller.dart';
+import 'package:nawalah/util/theme/theme.dart';
+import 'package:nawalah/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 

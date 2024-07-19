@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:paraiso/controllers/categories_controller.dart';
+import 'package:nawalah/controllers/categories_controller.dart';
 
 import '../widgets/restaurant_tile.dart';
 

@@ -3,9 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:paraiso/controllers/customer_controller.dart';
-import 'package:paraiso/widgets/home_chips_row.dart';
-import 'package:paraiso/widgets/nav_bottom_bar.dart';
+import 'package:nawalah/controllers/customer_controller.dart';
+import 'package:nawalah/widgets/home_chips_row.dart';
+import 'package:nawalah/widgets/nav_bottom_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/bottom_navbar_controller.dart';

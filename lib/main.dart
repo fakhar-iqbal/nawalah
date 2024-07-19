@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:paraiso/screens/grocery_provider.dart';
-import 'package:paraiso/screens/logo_provider.dart';
-import 'package:paraiso/screens/ngo_cache_provider.dart';
-import 'package:paraiso/screens/restaurant_cache_provider.dart';
-import 'package:paraiso/screens/restaurant_provider.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/screens/grocery_provider.dart';
+import 'package:nawalah/screens/logo_provider.dart';
+import 'package:nawalah/screens/ngo_cache_provider.dart';
+import 'package:nawalah/screens/restaurant_cache_provider.dart';
+import 'package:nawalah/screens/restaurant_provider.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
 import 'package:provider/provider.dart';
 
-import 'package:paraiso/controllers/user_profile_provider.dart';
-import 'package:paraiso/routes/router.dart';
-import 'package:paraiso/setup.dart';
-import 'package:paraiso/util/theme/theme.dart';
+import 'package:nawalah/controllers/user_profile_provider.dart';
+import 'package:nawalah/routes/router.dart';
+import 'package:nawalah/setup.dart';
+import 'package:nawalah/util/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 

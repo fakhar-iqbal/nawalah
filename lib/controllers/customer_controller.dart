@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:paraiso/repositories/customer_auth_repo.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/repositories/customer_auth_repo.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
 
 class CustomerController with ChangeNotifier {
   final CustomerAuthRep _repo = CustomerAuthRep();

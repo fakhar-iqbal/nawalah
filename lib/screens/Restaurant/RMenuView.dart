@@ -2,8 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:paraiso/screens/Restaurant/RAddItemView.dart';
-import 'package:paraiso/screens/Restaurant/REditItemView.dart';
+import 'package:nawalah/screens/Restaurant/RAddItemView.dart';
+import 'package:nawalah/screens/Restaurant/REditItemView.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../util/local_storage/shared_preferences_helper.dart';

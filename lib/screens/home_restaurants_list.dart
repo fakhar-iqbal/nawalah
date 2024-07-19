@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
-import 'package:paraiso/widgets/restaurant_tile.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/widgets/restaurant_tile.dart';
 import 'package:provider/provider.dart';
 
 

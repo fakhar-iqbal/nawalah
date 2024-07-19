@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:paraiso/screens/home_restaurants_list.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
-import 'package:paraiso/widgets/home_chips_row.dart';
+import 'package:nawalah/screens/home_restaurants_list.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/widgets/home_chips_row.dart';
 
 import '../repositories/customer_firebase_calls.dart';
 

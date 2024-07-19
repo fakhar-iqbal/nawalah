@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:paraiso/util/theme/theme_constants.dart';
+import 'package:nawalah/util/theme/theme_constants.dart';
 
 var darkTheme = ThemeData(
   // Define the default font family.

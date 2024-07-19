@@ -584,8 +584,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
 import 'package:crypto/crypto.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../controllers/paymob/paymob_manager.dart';
+
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -600,6 +604,8 @@ class _CartScreenState extends State<CartScreen> {
   bool _isProcessingPayment = false;
   bool _paymentResultReceived = false;
   String? currentUserEmail;
+  final PaymobManager _paymobManager = PaymobManager();
+
   TextEditingController phoneNumberController = TextEditingController();
 
   @override
@@ -680,6 +686,18 @@ class _CartScreenState extends State<CartScreen> {
     }
     return total;
   }
+  Future<void> _pay() async{
+    PaymobManager().getPaymentKey(
+        10,"PKR"
+    ).then((String paymentKey) {
+      launchUrl(
+        Uri.parse("https://pakistan.paymob.com/api/acceptance/iframes/185600?payment_token=$paymentKey"),
+      );
+    });
+
+  }
+
+
 
   void showCollectingModeDialog(BuildContext context) {
     showDialog(
@@ -734,8 +752,19 @@ class _CartScreenState extends State<CartScreen> {
                 Navigator.of(context).pop();
                 showJazzCashPaymentDialog(context, collectingMode, false);
               },
-              child: const Text('Online'),
+              child: const Text('Pay with Jazzcash'),
             ),
+            ///////
+            // TextButton(
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //     //int totalAmount = calculateTotalPrice().toInt();
+            //     _pay();
+            //
+            //   },
+            //   child: const Text('Card Payment'),
+            // ),
+            ///////
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -776,89 +805,6 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  // void showJazzCashPaymentDialog(
-  //     BuildContext context, String collectingMode, bool isDonation) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         backgroundColor: Colors.grey[100],
-  //         title: const Text('Pay with JazzCash'),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             const Text('Enter your JazzCash number:'),
-  //             TextField(
-  //               controller: phoneNumberController,
-  //               decoration: const InputDecoration(
-  //                 hintText: 'Phone Number',
-  //                 filled: true,
-  //                 fillColor: Colors.white,
-  //               ),
-  //               keyboardType: TextInputType.phone,
-  //             ),
-  //           ],
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () async {
-  //               Navigator.of(context).pop();
-  //               await processJazzCashPayment(
-  //                   phoneNumberController.text,
-  //                   calculateTotalPrice().toStringAsFixed(2),
-  //                   collectingMode,
-  //                   isDonation);
-  //             },
-  //             child: const Text('Pay with JazzCash'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-  // void showJazzCashPaymentDialog(
-  //     BuildContext context, String collectingMode, bool isDonation) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         backgroundColor: Colors.white,
-  //         title: const Text('Online Payment',style: TextStyle(color: Colors.black),),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             const Text('Enter your JazzCash number:',style: TextStyle(color: Colors.black),),
-  //             TextField(
-  //               controller: phoneNumberController,
-  //               decoration: const InputDecoration(
-  //                 hintText: 'Phone Number',
-  //                 filled: true,
-  //                 fillColor: Colors.white,
-  //                 contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-  //
-  //               ),
-  //               keyboardType: TextInputType.phone,
-  //             ),
-  //           ],
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () async {
-  //               Navigator.of(context).pop();
-  //               showProcessingDialog(context);
-  //               await processJazzCashPayment(
-  //                   phoneNumberController.text,
-  //                   calculateTotalPrice().toStringAsFixed(2),
-  //                   collectingMode,
-  //                   isDonation);
-  //             },
-  //             child: const Text('Pay with JazzCash'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
   void showJazzCashPaymentDialog(
       BuildContext context, String collectingMode, bool isDonation) {
     showDialog(
@@ -980,8 +926,8 @@ class _CartScreenState extends State<CartScreen> {
       String pp_BillReference = "billRef";
       String pp_Description = "Description";
       String pp_Language = "EN";
-      String pp_MerchantID = "your id";
-      String pp_Password = "your password";
+      String pp_MerchantID = "MC110126";
+      String pp_Password = "3a3301h21v";
       String pp_ReturnURL =
           "https://sandbox.jazzcash.com.pk/ApplicationAPI/API/Payment/DoTransaction";
       String pp_ver = "1.1";
@@ -991,7 +937,7 @@ class _CartScreenState extends State<CartScreen> {
       String pp_TxnRefNo = tre.toString();
       String pp_TxnType = "MWALLET";
       String ppmpf_1 = phoneNumber;
-      String IntegeritySalt = "your key";
+      String IntegeritySalt = "z028034035";
       String and = '&';
       String superdata = IntegeritySalt +
           and +
@@ -1047,6 +993,7 @@ class _CartScreenState extends State<CartScreen> {
         "pp_SecureHash": sha256Result.toString(),
         "ppmpf_1": phoneNumber,
       });
+
 
       print("response=>");
       print(response.body);
@@ -1453,13 +1400,13 @@ class _CartScreenState extends State<CartScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.shopping_cart,
+                        Icon(Icons.shopping_cart,
                             color: Color(0xFFD11559)),
-                        const SizedBox(width: 8),
-                        const Text(
+                        SizedBox(width: 8),
+                        Text(
                           'Place Order',
                           style: TextStyle(
                             color: Color(0xFFD11559),

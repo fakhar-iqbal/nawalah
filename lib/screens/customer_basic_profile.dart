@@ -9,9 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:paraiso/repositories/customer_firebase_calls.dart';
-import 'package:paraiso/util/theme/theme_constants.dart';
-import 'package:paraiso/widgets/primary_button.dart';
+import 'package:nawalah/repositories/customer_firebase_calls.dart';
+import 'package:nawalah/util/theme/theme_constants.dart';
+import 'package:nawalah/widgets/primary_button.dart';
 
 import '../controllers/customer_controller.dart';
 import '../controllers/profile_controller.dart';

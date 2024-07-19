@@ -3,7 +3,7 @@
 import 'package:bcrypt/bcrypt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomerAuthRep {

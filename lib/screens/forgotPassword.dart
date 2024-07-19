@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:paraiso/screens/Restaurant/RSignInView.dart';
+import 'package:nawalah/screens/Restaurant/RSignInView.dart';
 import 'package:provider/provider.dart';
 
 import 'package:velocity_x/velocity_x.dart';

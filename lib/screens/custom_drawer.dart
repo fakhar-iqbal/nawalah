@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:paraiso/controllers/Restaurants/res_auth_controller.dart';
+import 'package:nawalah/controllers/Restaurants/res_auth_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../routes/routes_constants.dart';

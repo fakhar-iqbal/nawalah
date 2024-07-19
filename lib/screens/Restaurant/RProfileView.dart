@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:paraiso/controllers/Restaurants/res_auth_controller.dart';
-import 'package:paraiso/models/restaurant_admin_model.dart';
-import 'package:paraiso/util/theme/theme_constants.dart';
+import 'package:nawalah/controllers/Restaurants/res_auth_controller.dart';
+import 'package:nawalah/models/restaurant_admin_model.dart';
+import 'package:nawalah/util/theme/theme_constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/profile_controller.dart';

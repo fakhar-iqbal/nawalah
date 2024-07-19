@@ -26,6 +26,25 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:903437557620:android:3ca3dd6b243b609adc5621",
+        "android_client_info": {
+          "package_name": "com.nawalah.nawalah"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF3ylklngWHnj0p901dx3CmZgykGt5CJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:903437557620:android:c73921b68ec76681dc5621",
         "android_client_info": {
           "package_name": "com.paraiso.paraiso"

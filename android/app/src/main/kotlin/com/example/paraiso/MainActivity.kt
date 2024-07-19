@@ -1,4 +1,4 @@
-package com.example.paraiso
+package com.example.nawalah
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

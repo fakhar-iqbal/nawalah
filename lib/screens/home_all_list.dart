@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/restaurant_tile.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:paraiso/repositories/res_post_repo.dart';
-import 'package:paraiso/models/restaurant_admin_model.dart';
+import 'package:nawalah/repositories/res_post_repo.dart';
+import 'package:nawalah/models/restaurant_admin_model.dart';
 
 import '../../models/nearby_restaurants.dart';
 

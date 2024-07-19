@@ -6,9 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
-import 'package:paraiso/routes/routes_constants.dart';
-import 'package:paraiso/util/local_storage/shared_preferences_helper.dart';
-import 'package:paraiso/widgets/primary_button.dart';
+import 'package:nawalah/routes/routes_constants.dart';
+import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
+import 'package:nawalah/widgets/primary_button.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({super.key});

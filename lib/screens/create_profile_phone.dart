@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:paraiso/routes/routes_constants.dart';
-import 'package:paraiso/util/theme/theme_constants.dart';
-import 'package:paraiso/widgets/primary_button.dart';
+import 'package:nawalah/routes/routes_constants.dart';
+import 'package:nawalah/util/theme/theme_constants.dart';
+import 'package:nawalah/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_progress_indicators/simple_progress_indicators.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -20,7 +20,7 @@ import '../repositories/customer_firebase_calls.dart';
 import '../util/location/user_location.dart';
 import '../widgets/svgtextfield.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:paraiso/widgets/normal_appbar.dart';
+import 'package:nawalah/widgets/normal_appbar.dart';
 
 class PhoneInputFormatter extends TextInputFormatter {
   @override
