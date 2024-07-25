@@ -270,7 +270,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                                           Text(
                                             itemName,
                                             style: const TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                             ),
@@ -311,7 +311,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                                               Text(
                                                 '${itemQuantities[itemName]}',
                                                 style: const TextStyle(
-                                                    fontSize: 18,
+                                                    fontSize: 16,
                                                     color: Colors.white),
                                               ),
                                               IconButton(
@@ -366,7 +366,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                                               //           color: Colors.red)),
                                               // ),
                                               Padding(
-                                                padding: const EdgeInsets.only(right: 16.0), // Adjust the padding as needed
+                                                padding: const EdgeInsets.only(right: 18.0), // Adjust the padding as needed
                                                 child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(
                                                     backgroundColor: Colors.white,
@@ -388,12 +388,12 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                                                       ? const Row(
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: [
-                                                      Text('Added', style: TextStyle(color: Colors.red)),
+                                                      Text('Added', style: TextStyle(color: Colors.red,fontSize: 14)),
                                                       SizedBox(width: 5),
                                                       Icon(Icons.check, color: Colors.red),
                                                     ],
                                                   )
-                                                      : const Text('Add to Cart', style: TextStyle(color: Colors.red)),
+                                                      : const Text('Add to Cart', style: TextStyle(color: Colors.red,fontSize: 14)),
                                                 ),
                                               )
 

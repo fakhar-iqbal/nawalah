@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 // var primaryColor = const Color(0xFFFF6154);
 var primaryColor = const Color(0xFF2F58CD);
-var onPrimaryColor = const Color(0xFFE5E5E5);
+var onPrimaryColor = const Color(0xFFFFFFFF);
 // var secondaryColor = const Color(0xFFFF6154);
 var secondaryColor = const Color(0xFF2F58CD);
-var onSecondaryColor = const Color(0xFFE5E5E5);
-var white = const Color(0xFFE5E5E5);
+var onSecondaryColor = const Color(0xFFFFFFFF);
+var white = const Color(0xFFFFFFFF);
 // var accentColor = const Color(0xFFFF6154);
 
 //background
@@ -14,7 +14,7 @@ var white = const Color(0xFFE5E5E5);
 
 var neutralColor = const Color(0xFF1C1C1C); // black
 var softBlack = const Color(0xFF353535);
-var onNeutralColor = const Color(0xFFBDBDBD); //gray
+var onNeutralColor = const Color(0xFFFFFFFF); //gray
 var softGray = const Color(0xFFBDBDBD).withOpacity(.5);
 
 var halfPadding = 8.0;

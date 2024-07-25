@@ -45,7 +45,7 @@ class _FoodRestaurantsTabState extends State<FoodRestaurantsTab> {
             color: Colors.white,
             fontFamily: 'Recoleta',
             fontWeight: FontWeight.w500,
-            fontSize: 30.sp,
+            fontSize: 20.sp,
           ),
         ),
       ),

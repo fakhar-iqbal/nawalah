@@ -588,7 +588,6 @@ import 'package:nawalah/util/local_storage/shared_preferences_helper.dart';
 import 'package:crypto/crypto.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../controllers/paymob/paymob_manager.dart';
 
 
 class CartScreen extends StatefulWidget {
@@ -604,7 +603,8 @@ class _CartScreenState extends State<CartScreen> {
   bool _isProcessingPayment = false;
   bool _paymentResultReceived = false;
   String? currentUserEmail;
-  final PaymobManager _paymobManager = PaymobManager();
+  String? currentAddress;
+
 
   TextEditingController phoneNumberController = TextEditingController();
 
@@ -686,16 +686,16 @@ class _CartScreenState extends State<CartScreen> {
     }
     return total;
   }
-  Future<void> _pay() async{
-    PaymobManager().getPaymentKey(
-        10,"PKR"
-    ).then((String paymentKey) {
-      launchUrl(
-        Uri.parse("https://pakistan.paymob.com/api/acceptance/iframes/185600?payment_token=$paymentKey"),
-      );
-    });
-
-  }
+  // Future<void> _pay() async{
+  //   PaymobManager().getPaymentKey(
+  //       10,"PKR"
+  //   ).then((String paymentKey) {
+  //     launchUrl(
+  //       Uri.parse("https://pakistan.paymob.com/api/acceptance/iframes/185600?payment_token=$paymentKey"),
+  //     );
+  //   });
+  //
+  // }
 
 
 
@@ -716,14 +716,15 @@ class _CartScreenState extends State<CartScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                showPaymentModeDialog(context, 'pickup');
+                showPaymentModeDialog(context, 'pickup','null');
               },
               child: const Text('Pickup'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                showPaymentModeDialog(context, 'delivery');
+                // showPaymentModeDialog(context, 'delivery');
+                showDeliveryAddressDialog(context, 'delivery');
               },
               child: const Text('Delivery'),
             ),
@@ -733,7 +734,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  void showPaymentModeDialog(BuildContext context, String collectingMode) {
+  void showPaymentModeDialog(BuildContext context, String collectingMode,String address) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -750,7 +751,7 @@ class _CartScreenState extends State<CartScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                showJazzCashPaymentDialog(context, collectingMode, false);
+                showJazzCashPaymentDialog(context, collectingMode, false,address);
               },
               child: const Text('Pay with Jazzcash'),
             ),
@@ -768,7 +769,7 @@ class _CartScreenState extends State<CartScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                placeOrder(false, 'on cash', collectingMode);
+                placeOrder(false, 'on cash', collectingMode,address);
               },
               child: const Text('On Cash'),
             ),
@@ -795,7 +796,7 @@ class _CartScreenState extends State<CartScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                showJazzCashPaymentDialog(context, 'donation', true);
+                showJazzCashPaymentDialog(context, 'donation', true,"ngo's pickup");
               },
               child: const Text('Pay with JazzCash'),
             ),
@@ -804,9 +805,98 @@ class _CartScreenState extends State<CartScreen> {
       },
     );
   }
+  void showDeliveryAddressDialog(BuildContext context, String collectMode) {
+    final addressController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: const Text(
+            'Delivery Address',
+            style: TextStyle(
+              color: Color(0xFF1A1A1A),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Container(
+            width: double.maxFinite,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Please enter your delivery address:',
+                  style: TextStyle(
+                    color: Color(0xFF4A4A4A),
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: addressController,
+                  decoration: InputDecoration(
+                    hintText: 'Full Address',
+                    hintStyle: TextStyle(color: Colors.grey[400]),
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    prefixIcon: Icon(Icons.location_on, color: Color(0xFF4A4A4A)),
+                  ),
+                  maxLines: 3,
+                  keyboardType: TextInputType.streetAddress,
+                  style: TextStyle(color: Color(0xFF1A1A1A), fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Cancel',
+                style: TextStyle(color: Color(0xFF4A4A4A)),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Handle the address submission here
+                String deliveryAddress = addressController.text;
+                Navigator.of(context).pop(deliveryAddress);
+                showPaymentModeDialog(context, collectMode,deliveryAddress);
+                // You can add your logic to process the address here
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF007AFF), // A professional blue color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              ),
+              child: const Text(
+                'Confirm Address',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void showJazzCashPaymentDialog(
-      BuildContext context, String collectingMode, bool isDonation) {
+      BuildContext context, String collectingMode, bool isDonation,String address) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -875,7 +965,7 @@ class _CartScreenState extends State<CartScreen> {
                     phoneNumberController.text,
                     calculateTotalPrice().toStringAsFixed(2),
                     collectingMode,
-                    isDonation);
+                    isDonation,address);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFEFE9E9), // JazzCash brand color
@@ -916,7 +1006,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
   Future<void> processJazzCashPayment(String phoneNumber, String amount,
-      String collectingMode, bool isDonation) async {
+      String collectingMode, bool isDonation, String address) async {
     try {
       String dateandtime = DateFormat("yyyyMMddHHmmss").format(DateTime.now());
       String dexpiredate =
@@ -1003,10 +1093,10 @@ class _CartScreenState extends State<CartScreen> {
         if (isDonation) {
           // Handle donation success
 
-          placeOrder(true, 'JazzCash', "donation");
+          placeOrder(true, 'JazzCash', "donation",address);
         } else {
           // Handle order success
-          placeOrder(false, 'JazzCash', collectingMode);
+          placeOrder(false, 'JazzCash', collectingMode,address);
         }
       } else {
         // Handle payment failure
@@ -1022,7 +1112,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
 
-  Future<void> placeOrder(bool isDonation, String paymentMode, String collectingMode) async {
+  Future<void> placeOrder(bool isDonation, String paymentMode, String collectingMode,String address) async {
     if (currentUserEmail == null) return;
 
     // Fetch current user data
@@ -1079,7 +1169,7 @@ class _CartScreenState extends State<CartScreen> {
             .add({
           'userName': userName,
           'userEmail': currentUserEmail,
-          'userLocation': userLocation,
+          'userLocation': address,
           'userPhoneNumber': userPhoneNumber,
           'orderItems': items,
           'totalPrice': totalPrice,

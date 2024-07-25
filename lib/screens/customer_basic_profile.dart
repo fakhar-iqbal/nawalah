@@ -327,113 +327,106 @@ class _CustomerBasicProfileState extends State<CustomerBasicProfile> {
                         backgroundColor: Colors.white,
                       ),
                       25.verticalSpace,
-                      Consumer<CustomerController>(
-                        builder: (context, customerController, child) {
-                          if (customerController.user.isEmpty) {
-                            return SizedBox(
-                                height: 80,
-                                width: 80,
-                                child: Transform.scale(
-                                  scale: .5,
-                                  child: CircularProgressIndicator(color: primaryColor),
-                                ));
-                          } else {
-                            GeoPoint location = customerController.user['location'];
-
-                            double latitude = location.latitude;
-                            double longitude = location.longitude;
-
-                            return FutureBuilder<String>(
-                              future: UserLocation().getAddress(latitude, longitude),
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState == ConnectionState.waiting) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 100.w),
-                                    child: SizedBox(
-                                        height: 60,
-                                        width: 10,
-                                        child: Transform.scale(
-                                          scale: .5,
-                                          child: CircularProgressIndicator(color: primaryColor),
-                                        )),
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Text("Couldn't fetch address: ${snapshot.error}");
-                                } else {
-                                  String userAddress = snapshot.data ?? "Unknown Address";
-                                  return SizedBox(
-                                    width: MediaQuery.sizeOf(context).width * 0.2,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.location_on_rounded,
-                                          color: primaryColor,
-                                          size: 30.h,
-                                        ),
-                                        8.horizontalSpace,
-                                        addressUpdated
-                                            ? Expanded(
-                                                child: Text(
-                                                  userAddress,
-                                                  softWrap: true,
-                                                  maxLines: 3,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                  ),
-                                                ),
-                                              )
-                                            : Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(horizontal: 80.w),
-                                                  child: SizedBox(
-                                                      height: 60,
-                                                      width: 10,
-                                                      child: Transform.scale(
-                                                        scale: .5,
-                                                        child: CircularProgressIndicator(color: primaryColor),
-                                                      )),
-                                                ),
-                                              ),
-                                        5.horizontalSpace,
-                                        InkWell(
-                                          onTap: () async {
-                                            setState(() {
-                                              addressUpdated = false;
-                                            });
-                                            final Position? newPosition = await UserLocation().requestLocationPermission();
-                                            await CustomerAuthRep().updateUserAddress(newPosition!);
-                                            await customerController.getCurrentUser();
-                                            //GeoPoint newLocation = customerController.user['location'];
-
-                                            //double newLatitude = newLocation.latitude;
-                                            //double newLongitude = newLocation.longitude;
-                                            //var dataa= await UserLocation().getAddress(newLatitude, newLongitude);
-                                            //await MyCustomerCalls().refreshNearbyRestaurants();
-                                            //final resByDist = Provider.of<SortByDistanceController>(context, listen: false);
-                                            //await resByDist.getRestaurantsByDistance();
-                                            setState(() {
-                                              addressUpdated = true;
-                                            });
-                                          },
-                                          child: Text(
-                                            addressUpdated ? AppLocalizations.of(context)!.update : AppLocalizations.of(context)!.updating,
-                                            style: TextStyle(
-                                              color: primaryColor,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }
-                              },
-                            );
-                          }
-                        },
-                      ),
+                      // Consumer<CustomerController>(
+                      //   builder: (context, customerController, child) {
+                      //     if (customerController.user.isEmpty) {
+                      //       return SizedBox(
+                      //           height: 80,
+                      //           width: 80,
+                      //           child: Transform.scale(
+                      //             scale: .5,
+                      //             child: CircularProgressIndicator(color: primaryColor),
+                      //           ));
+                      //     } else {
+                      //       GeoPoint location = customerController.user['location'];
+                      //
+                      //       double latitude = location.latitude;
+                      //       double longitude = location.longitude;
+                      //
+                      //       return FutureBuilder<String>(
+                      //         future: UserLocation().getAddress(latitude, longitude),
+                      //         builder: (context, snapshot) {
+                      //           if (snapshot.connectionState == ConnectionState.waiting) {
+                      //             return Padding(
+                      //               padding: EdgeInsets.symmetric(horizontal: 100.w),
+                      //               child: SizedBox(
+                      //                   height: 60,
+                      //                   width: 10,
+                      //                   child: Transform.scale(
+                      //                     scale: .5,
+                      //                     child: CircularProgressIndicator(color: primaryColor),
+                      //                   )),
+                      //             );
+                      //           } else if (snapshot.hasError) {
+                      //             return Text("Couldn't fetch address: ${snapshot.error}");
+                      //           } else {
+                      //             String userAddress = snapshot.data ?? "Unknown Address";
+                      //             return SizedBox(
+                      //               width: MediaQuery.sizeOf(context).width * 0.2,
+                      //               child: Row(
+                      //                 children: [
+                      //                   Icon(
+                      //                     Icons.location_on_rounded,
+                      //                     color: primaryColor,
+                      //                     size: 30.h,
+                      //                   ),
+                      //                   8.horizontalSpace,
+                      //                   addressUpdated
+                      //                       ? Expanded(
+                      //                           child: Text(
+                      //                             userAddress,
+                      //                             softWrap: true,
+                      //                             maxLines: 3,
+                      //                             overflow: TextOverflow.ellipsis,
+                      //                             style: TextStyle(
+                      //                               fontSize: 14.sp,
+                      //                             ),
+                      //                           ),
+                      //                         )
+                      //                       : Expanded(
+                      //                           child: Padding(
+                      //                             padding: EdgeInsets.symmetric(horizontal: 80.w),
+                      //                             child: SizedBox(
+                      //                                 height: 60,
+                      //                                 width: 10,
+                      //                                 child: Transform.scale(
+                      //                                   scale: .5,
+                      //                                   child: CircularProgressIndicator(color: primaryColor),
+                      //                                 )),
+                      //                           ),
+                      //                         ),
+                      //                   5.horizontalSpace,
+                      //                   InkWell(
+                      //                     onTap: () async {
+                      //                       setState(() {
+                      //                         addressUpdated = false;
+                      //                       });
+                      //                       final Position? newPosition = await UserLocation().requestLocationPermission();
+                      //                       await CustomerAuthRep().updateUserAddress(newPosition!);
+                      //                       await customerController.getCurrentUser();
+                      //
+                      //                       setState(() {
+                      //                         addressUpdated = true;
+                      //                       });
+                      //                     },
+                      //                     child: Text(
+                      //                       addressUpdated ? AppLocalizations.of(context)!.update : AppLocalizations.of(context)!.updating,
+                      //                       style: TextStyle(
+                      //                         color: primaryColor,
+                      //                         fontSize: 14.sp,
+                      //                         fontWeight: FontWeight.w700,
+                      //                       ),
+                      //                     ),
+                      //                   )
+                      //                 ],
+                      //               ),
+                      //             );
+                      //           }
+                      //         },
+                      //       );
+                      //     }
+                      //   },
+                      // ),
                       40.verticalSpace,
                       Center(
                         child: PrimaryButton(
@@ -471,7 +464,7 @@ class _CustomerBasicProfileState extends State<CustomerBasicProfile> {
                                     ),
                                   ),
                                   duration: const Duration(seconds: 2),
-                                  backgroundColor: primaryColor,
+                                  backgroundColor: const Color(0xFFD11559),
                                 ),
                               );
                             }
@@ -483,10 +476,11 @@ class _CustomerBasicProfileState extends State<CustomerBasicProfile> {
                               : AutoSizeText(
                                   AppLocalizations.of(context)!.update,
                                   style: TextStyle(
-                                    color: const Color(0xFFE4E4E4),
+                                    color: Colors.white,
                                     fontSize: 18.sp,
                                     fontFamily: 'Recoleta',
                                     fontWeight: FontWeight.w700,
+
                                   ),
                                   maxLines: 1,
                                 ),
