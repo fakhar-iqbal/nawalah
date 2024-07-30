@@ -263,7 +263,7 @@ class _RSignInViewState extends State<RSignInView> {
                                   await authController.signInAnonymously();
 
                                   if (mounted) {
-                                    if (authController.user != null) {
+                                    if (authController.user == null) {
                                       context.go(AppRouteConstants.restaurantHome);
                                     } else {
                                       ScaffoldMessenger.of(context).showSnackBar(
